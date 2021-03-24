@@ -1,10 +1,11 @@
-import time
-
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import Select
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+
+from .base import BasePage
 
 
-class CarsHomePage:
+class CarsHomePage(BasePage):
     URL = "https://cars.com"
 
     STOCK_TYPE = (By.NAME, "stockType")
@@ -15,23 +16,13 @@ class CarsHomePage:
     ZIP_CODE = (By.NAME, "zip")
     SEARCH_BUTTON = (By.CSS_SELECTOR, '[data-linkname^="Search "]')
 
-    def __init__(self, driver):
-        self.driver = driver
-
     def load(self):
         self.driver.get(self.URL)
 
-    def select_dropdown_by_text(self, locator, text):
-        select = Select(self.driver.find_element(*locator))
-        select.select_by_visible_text(text)
-
-    def fill_value(self, locator, value):
-        el = self.driver.find_element(*locator)
-        el.clear()
-        el.send_keys(value)
-
     def submit(self):
+        current_url = self.driver.current_url
         self.driver.find_element(*self.SEARCH_BUTTON).click()
+        WebDriverWait(self.driver, 10).until(EC.url_changes(current_url))
 
     def place_search(
         self, stock_type, make_type, model_type, price_max, radius, zip_code
