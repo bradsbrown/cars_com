@@ -28,3 +28,25 @@ This is a project to automate the following actions using the Page Object Model:
   - Last Name: Owner
   - Email: carowner@yahoo.com
 - Scroll down to `Payment Calculator` and take a screenshot
+
+
+# My Notes
+
+I built this using the POM as logically as I could see to assemble it.
+I did run into some odd issues with Cars.com returning 503s across browsers,
+almost as if they're using automation detection of some sort.
+I couldn't find a way to bypass it entirely, so I tested this logic piecemeal
+to ensure it made sense, then re-assembled it into a single test case for review.
+
+You'll find the POMs in `/pages`, and the single test case in `tests/`.
+
+## To run the tests
+
+### Initial Setup
+1. Set up a virtualenv (`python3 -m pip venv .venv`)
+2. Activate the venv (`source .venv/bin/activate`)
+3. Install the Python requirements (`pip install -r requirements`)
+4. In addition, you'll need selenium (`brew install selenium-server-standalone`) and chromedriver (`brew install chromedriver`), as well as Google Chrome.
+
+### On-Demand Runs
+With the above setup in place, you can call `./run_tests.sh` to trigger a test run.
