@@ -30,7 +30,7 @@ This is a project to automate the following actions using the Page Object Model:
 - Scroll down to `Payment Calculator` and take a screenshot
 
 
-# My Notes
+# My Notes - Python Tests
 
 I built this using the POM as logically as I could see to assemble it.
 I did run into some odd issues with Cars.com returning 503s across browsers,
@@ -50,3 +50,20 @@ You'll find the POMs in `/pages`, and the single test case in `tests/`.
 
 ### On-Demand Runs
 With the above setup in place, you can call `./run_tests.sh` to trigger a test run.
+
+
+# My Notes - Cypress Tests
+
+Given the issues I was having getting selenium to drive the automation in this case,
+I decided to make another attempt in Cypress,
+and ran into similar issues eventually.
+I did not complete this code flow due to those failures,
+but left it as a partial example of how I'd implement a POM test in Cypress.
+
+## To run the tests
+
+### Initial Setup
+To set up requirements: `npm install`
+
+### On-Demand Runs
+With the setup in place, run: `$(npm bin)/cypress run -s cypress/integrations/cars.js`
